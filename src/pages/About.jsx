@@ -1,7 +1,7 @@
 function About() {
     return (
       <div>
-        <p>A</p>
+        <p>Ab</p>
       </div>
     );
   }
