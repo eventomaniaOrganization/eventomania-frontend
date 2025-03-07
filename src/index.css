@@ -4,4 +4,24 @@ body {
     line-height: 1.4;
     margin: 0;
   }
+  .map-page {
+    position: relative;
+  }
+  
+  input {
+    padding: 5px;
+    width: 200px;
+  }
+  
+  button {
+    padding: 5px;
+  }
+  
+  .map-container {
+    width: 70%;
+    height: 500px;
+    margin: 0 auto;
+  }
+  
+
   

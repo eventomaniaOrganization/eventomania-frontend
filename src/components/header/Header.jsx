@@ -76,6 +76,13 @@ function Header() {
               Sign Up
             </Link>
           </li>
+          <li className="nav-item">
+            <Link
+              to="/Map"
+            >
+              Map
+            </Link>
+          </li>
         </ul>
       </div>
     </header>
