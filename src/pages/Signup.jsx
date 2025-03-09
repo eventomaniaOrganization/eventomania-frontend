@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {auth} from '../firebaseconfig'
-import {createUserWithEmailAndPassword} from "firebase/auth"
-import { sendEmailVerification } from "firebase/auth";
+import {createUserWithEmailAndPassword} from "firebase/auth" // Skapa konto
+import { sendEmailVerification } from "firebase/auth";  // Skicka verifieringsmail
 
 function Signup() {
   const [email, setEmail] = useState("")
