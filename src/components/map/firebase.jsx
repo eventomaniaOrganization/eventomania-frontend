@@ -33,7 +33,6 @@ export const fetchAllEvents = async () => {
   }
 };
 
-// Fetch events by city using the Events collection in firestore
 export const fetchEventsByCity = async (city) => {
   try {
     const eventsRef = collection(db, 'Events');
