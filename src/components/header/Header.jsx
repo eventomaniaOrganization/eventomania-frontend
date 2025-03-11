@@ -1,9 +1,22 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import {auth} from "../../firebaseconfig";
+import Logout from '../Logout';
+import {onAuthStateChanged} from "firebase/auth"
 import './Header.css';
 
 function Header() {
   const [searchQuery, setSearchQuery] = useState("");
+  const[isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // lyssna på autentiseringsstatus
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsLoggedIn(!!user) // sätt isLoggedIn till true om en användare är inloggad
+    });
+
+    return () => unsubscribe(); // avbryt lyssnaren när komponenten avmonteras
+  }, []) 
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
@@ -62,20 +75,25 @@ function Header() {
               Contact
             </Link>
           </li>
-          <li className="nav-item">
-            <Link
-              to="/Login"
-            >
-              Login
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/Signup"
-            >
-              Sign Up
-            </Link>
-          </li>
+          {isLoggedIn ? (
+            <li className="nav-item">
+              <Logout/> {/* Visa Logout-knappen om användaren är inloggad */}
+            </li>
+          ) : (
+            <>
+              <li className="nav-item">
+                <Link to="/Login">
+                Login
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/Signup">
+                  Sign Up
+                </Link>
+              </li>
+            </>
+          )}
+          
         </ul>
       </div>
     </header>
