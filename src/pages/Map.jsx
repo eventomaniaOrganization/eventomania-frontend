@@ -58,62 +58,14 @@ const Map = () => {
   };
 
   const handleSearchClick = () => {
-    fetchAndDisplayEvents(city);
-  };
+    const searchInput = document.getElementById('searchInput').value.trim();
 
-  const handleRouteCalculation = async () => {
-    if (position && clickedEvent) {
-      console.log('Handling route calculation...');
-      try {
-        if (route) {
-          route.remove();
-        }
-
-        const coordinates = [
-          [position.lon, position.lat],
-          [clickedEvent.Coordinates[1], clickedEvent.Coordinates[0]],
-        ];
-
-        // Make API call to OpenRouteService
-        console.log('Coordinates for route:', coordinates);
-        const response = await fetch(
-          'https://api.openrouteservice.org/v2/directions/driving-car',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${apiKey}`,
-            },
-            body: JSON.stringify({
-              coordinates: coordinates,
-              format: 'geojson',
-            }),
-          }
-        );
-
-        const data = await response.json();
-        console.log('OpenRouteService response:', data);
-
-        if (!data.routes || data.routes.length === 0) {
-          console.error('No route found.');
-          return;
-        }
-
-        const geoJsonRoute = data.routes[0];
-
-        const newRoute = L.Routing.control({
-          waypoints: [
-            L.latLng(position.lat, position.lon), // User location
-            L.latLng(clickedEvent.Coordinates[0], clickedEvent.Coordinates[1]), // Event location
-          ],
-          routeWhileDragging: true,
-        }).addTo(mapRef.current);
-
-        setRoute(newRoute);
-      } catch (error) {
-        console.error('Error calculating route:', error);
-      }
+    if (!searchInput) {
+      console.log('Search input is empty');
+      alert('Please enter a location to search');
+      return; 
     }
+    fetchAndDisplayEvents(city);
   };
 
   if (!user) {
@@ -137,6 +89,7 @@ const Map = () => {
         style={{ marginBottom: '10px' }}
       >
         <input
+          id="searchInput"
           type="text"
           placeholder="Search for a city..."
           value={city}
@@ -198,20 +151,7 @@ const Map = () => {
               left: '50%',
               transform: 'translateX(-50%)',
             }}
-          >
-            <button
-              onClick={handleRouteCalculation}
-              style={{
-                padding: '10px 20px',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                backgroundColor: '#4CAF50',
-                color: 'white',
-              }}
-            >
-              Calculate Route
-            </button>
-          </div>
+          ></div>
         )}
       </MapContainer>
     </div>

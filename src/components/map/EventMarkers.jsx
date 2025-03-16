@@ -8,6 +8,8 @@ const EventMarkers = ({ events, userLocation, setClickedEvent, mapRef }) => {
 
   const apiKey = '5b3ce3597851110001cf62481c95047c8cd243f69da64803753de261';
 
+  const [currentRoute, setCurrentRoute] = useState(null);
+
   useEffect(() => {
     if (mapRef.current) {
       console.log('Map is ready');
@@ -63,8 +65,12 @@ const EventMarkers = ({ events, userLocation, setClickedEvent, mapRef }) => {
             const route = routeData.features[0].geometry;
             console.log('Route geometry:', route);
 
+            if (currentRoute) {
+              mapRef.current.removeLayer(currentRoute);
+            }
+
             const geoJsonLayer = L.geoJSON(route).addTo(mapRef.current);
-            alert('Route calculated successfully!');
+            setCurrentRoute(geoJsonLayer);
           }
         } catch (error) {
           console.error('Error calculating route:', error);
