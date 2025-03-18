@@ -5,8 +5,8 @@ import {onAuthStateChanged} from "firebase/auth"
 import {Navigate, Outlet} from "react-router-dom"
 
 const ProtectedRoute = () => {
-    const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(true)
+    const [user, setUser] = useState(null) // state för att spara den inloggade användaren
+    const [loading, setLoading] = useState(true) // state för att hantera laddningsstatus
 
     useEffect(() =>{
         // lyssna på autentiseringsstatus (om användaren är inloggad eller ej)
