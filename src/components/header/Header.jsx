@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import {auth} from "../../firebaseconfig";
-import Logout from '../Logout';
+import Logout from '../auth/Logout';
 import {onAuthStateChanged} from "firebase/auth"
 import './Header.css';
 

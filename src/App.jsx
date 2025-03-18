@@ -8,6 +8,8 @@ import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Header from './components/header/Header.jsx';
 import Footer from './components/footer/footer.jsx';
+import ProtectedRoute from './components/auth/ProtectedRoute.jsx';
+import Dashboard from './pages/Dashboard.jsx';
 
 const App = () => {
   return (
@@ -21,25 +23,31 @@ const App = () => {
               element={<Home />}
             />
             <Route
-              path="/Events"
+              path="/events"
               element={<Events />}
             />
             <Route
-              path="/About"
+              path="/about"
               element={<About />}
             />
             <Route
-              path="/Contact"
+              path="/contact"
               element={<Contact />}
             />
             <Route
-              path="/Login"
+              path="/login"
               element={<Login />}
             />
             <Route
-              path="/Signup"
+              path="/signup"
               element={<Signup />}
             />
+
+            {/* Skyddade rutter */}
+            <Route path='/dashboard' element={<ProtectedRoute/>}>
+              <Route index element={<Dashboard/>} />
+
+            </Route>
           </Routes>
         </main>
         <Footer />
