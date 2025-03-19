@@ -5,9 +5,8 @@ import L from 'leaflet';
 const EventMarkers = ({ events, userLocation, setClickedEvent, mapRef }) => {
   const [isMapReady, setIsMapReady] = useState(false);
   const [clickedEvent, setClickedEventState] = useState(null);
-
+  const [routeDistance, setRouteDistance] = useState(null);
   const apiKey = '5b3ce3597851110001cf62481c95047c8cd243f69da64803753de261';
-
   const [currentRoute, setCurrentRoute] = useState(null);
 
   useEffect(() => {
@@ -61,6 +60,11 @@ const EventMarkers = ({ events, userLocation, setClickedEvent, mapRef }) => {
           const routeData = await response.json();
           console.log('Route Data:', routeData);
 
+          const distanceMeters =
+            routeData.features[0].properties.segments[0].distance;
+          const distanceKm = (distanceMeters / 1000).toFixed(2);
+          setRouteDistance(distanceKm);
+
           if (mapRef.current) {
             const route = routeData.features[0].geometry;
             console.log('Route geometry:', route);
@@ -87,58 +91,71 @@ const EventMarkers = ({ events, userLocation, setClickedEvent, mapRef }) => {
 
   return (
     <>
-      {events.map((event, id) => (
-        <Marker
-          key={id}
-          position={[event.Coordinates[0], event.Coordinates[1]]}
-          eventHandlers={{
-            click: (e) => {
-              console.log('Marker onClick triggered!');
-              console.log(`Marker clicked: ${event.Name}`);
-              console.log(
-                `Event Coordinates: ${event.Coordinates[0]}, ${event.Coordinates[1]}`
-              );
-              console.log('Click event details:', e.originalEvent);
+      {events.map((event, id) => {
+        // Ensure Coordinates are available and valid
+        const [lat, lon] = event.Coordinates || [];
 
-              setClickedEventState(event);
-              setClickedEvent(event);
-            },
-          }}
-        >
-          <Popup interactive={false}>
-            <h3>{event.Name}</h3>
-            <p>{event.Description}</p>
-            <p>
-              {event.City}, {event.Region}
-            </p>
-            <p>
-              Start Time:{' '}
-              {new Date(event.startTime.seconds * 1000).toLocaleString()}
-            </p>
-            <p>
-              End Time:{' '}
-              {new Date(event.endTime.seconds * 1000).toLocaleString()}
-            </p>
+        // Skip this event if coordinates are invalid
+        if (lat === undefined || lon === undefined) {
+          console.error(`Invalid coordinates for event: ${event.Name}`, event);
+          return null; // Skip rendering marker for this event
+        }
 
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                console.log('Route button clicked for:', clickedEvent?.Name);
-                handleRouteCalculation();
-              }}
-              style={{
-                padding: '8px 12px',
-                borderRadius: '5px',
-                backgroundColor: '#4CAF50',
-                color: 'white',
-                cursor: 'pointer',
-              }}
-            >
-              Calculate Route
-            </button>
-          </Popup>
-        </Marker>
-      ))}
+        return (
+          <Marker
+            key={id}
+            position={[lat, lon]}
+            eventHandlers={{
+              click: () => {
+                console.log('Marker clicked:', event.Name);
+                setClickedEventState(event);
+                setClickedEvent(event);
+              },
+            }}
+          >
+            <Popup interactive={false}>
+              <h3>{event.Name}</h3>
+              <p>{event.Description}</p>
+              <p>{event.City}, {event.Region}</p>
+              <p>
+                Start Time:{' '}
+                {event.startTime
+                  ? new Date(event.startTime.seconds * 1000).toLocaleString()
+                  : 'N/A'}
+              </p>
+              <p>
+                End Time:{' '}
+                {event.endTime
+                  ? new Date(event.endTime.seconds * 1000).toLocaleString()
+                  : 'N/A'}
+              </p>
+              {/* Display the route distance if available */}
+              {routeDistance && (
+                <p>
+                  <strong>Distance: {routeDistance} km</strong>
+                </p>
+              )}
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  console.log('Route button clicked for:', clickedEvent?.Name);
+                  handleRouteCalculation();
+                }}
+                style={{
+                  padding: '8px 12px',
+                  borderRadius: '5px',
+                  backgroundColor: '#4CAF50',
+                  color: 'white',
+                  cursor: 'pointer',
+                }}
+              >
+                Calculate Route
+              </button>
+            </Popup>
+          </Marker>
+        );
+      })}
     </>
   );
 };
