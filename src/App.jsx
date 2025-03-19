@@ -10,6 +10,7 @@ import Header from './components/header/Header.jsx';
 import Footer from './components/footer/footer.jsx';
 import ProtectedRoute from './components/auth/ProtectedRoute.jsx';
 import Dashboard from './pages/Dashboard.jsx';
+import ResetPassword from './pages/ResetPassword.jsx';
 
 const App = () => {
   return (
@@ -41,6 +42,11 @@ const App = () => {
             <Route
               path="/signup"
               element={<Signup />}
+            />
+
+            <Route 
+              path='/reset-password' 
+              element={<ResetPassword />}
             />
 
             {/* Skyddade rutter */}

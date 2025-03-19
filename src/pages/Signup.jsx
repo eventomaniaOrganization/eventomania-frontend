@@ -11,9 +11,15 @@ function Signup() {
   const [error, setError] = useState("");
   const navigate = useNavigate()
 
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const handleSignup = async (e) => {
     e.preventDefault();
     setError("")
+
+    if (!emailRegex.test(email)) {
+      setError("Felaktig e-postadress.");
+      return;
+    }
 
     if (password !== confirmPassword){
       setError("Lösenorden matchar inte")
@@ -30,8 +36,9 @@ function Signup() {
 
       navigate("/login"); //skicka andvändaren till login efter signup
     } catch(err){
+      console.log(err.code)
         if(err.code === "auth/email-already-in-use"){
-          setError("E-postadressen används redan. Försök att logga in.")
+          setError("Felaktig e-postadress")
         }
         else if(err.code === "auth/weak-password"){
           setError("Lösenordet måste vara minst 6 tecken långt.")

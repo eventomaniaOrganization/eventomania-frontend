@@ -10,8 +10,9 @@ function Login() {
   const navigate = useNavigate("")
 
   const handleSignin = async (e) => {
+    //förhindrar att sidan laddas om när formuläret skickas.
     e.preventDefault()
-    setError("")
+    setError("") // nollställ felmeddelandet 
 
     try{
       const userCredential = await signInWithEmailAndPassword(auth, email, password )
@@ -24,7 +25,6 @@ function Login() {
 
       navigate("/dashboard") // Skicka användaren till dashboard/start
     }catch(err){
-      console.log("Firebase Error Code:", err.code); // Debugging
 
       if (err.code === "auth/wrong-password" || err.code === "auth/invalid-credential") {
         setError("Felaktig e-postadress eller lösenord.");
