@@ -1,3 +1,7 @@
+@import "./components/category/_category.scss";
+
+
+
 body {
     font-family: Averta, helvetica, arial, sans-serif;
     letter-spacing: 0.02em;
