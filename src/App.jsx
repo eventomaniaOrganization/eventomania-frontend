@@ -8,6 +8,8 @@ import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Header from './components/header/Header.jsx';
 import Footer from './components/footer/footer.jsx';
+import CreateEvent from './utils/CreateEvent.jsx';
+import PopulateEvents from './utils/PopulateEvents.jsx';
 
 const App = () => {
   return (
@@ -40,6 +42,10 @@ const App = () => {
               path="/Signup"
               element={<Signup />}
             />
+            <Route path="/create-event" element={<CreateEvent />} />
+            <Route path="/populate-event" element={<PopulateEvents />} />
+
+            
           </Routes>
         </main>
         <Footer />
