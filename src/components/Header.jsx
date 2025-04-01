@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import './Header.css';
+import '../asset/scss/index.css';
 
 function Header() {
   const [searchQuery, setSearchQuery] = useState("");

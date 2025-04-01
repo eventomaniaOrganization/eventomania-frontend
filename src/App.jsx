@@ -6,13 +6,13 @@ import Contact from './pages/Contact.jsx';
 import About from './pages/About.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
-import Header from './components/header/Header.jsx';
-import Footer from './components/footer/footer.jsx';
+import Header from './components/Header.jsx';
+import Footer from './components/footer.jsx';
 
 const App = () => {
   return (
     <Router>
-      <div className="app">
+      <div className="wrapper">
         <Header />
         <main>
           <Routes>
