@@ -28,7 +28,6 @@ function Header() {
           <Link to="#">Presentkort</Link>
           <Link to="#">Hjälp</Link>
           <Link to="#">Sälj med oss</Link>
-          <span>PayPal</span>
         </div>
       </div>
 
