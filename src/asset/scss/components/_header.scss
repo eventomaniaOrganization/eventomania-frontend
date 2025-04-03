@@ -1,177 +1,137 @@
-// Grundläggande header-styling
+@import '../core/media';
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
   background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
+  box-shadow: 0 4px 4px rgba(1, 185, 1, 0.1);
 
-  // Logotyp styling
-  .logo-container {
-    .logo {
-      max-height: 50px;
-      object-fit: contain;
-    }
-  }
-
-  // Sökfält
-  .search-container {
+  .top-bar{
+    background-color: #111;
+    color: #ffffff;
     display: flex;
-    align-items: center;
-
-    .search-input {
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 4px 0 0 4px;
-    }
-
-    .search-button {
-      padding: 0.5rem 1rem;
-      border: none;
-      background-color: #d32f2f; // Röd 
-      color: white;
-      border-radius: 0 4px 4px 0;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-
-      &:hover {
-        background-color: #b71c1c; // Mörkare röd vid hover
-      }
-    }
-  }
-
-  // Navigation styling
-  .nav-container {
-    display: flex;
-    align-items: center;
-
-    .nav-list {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-item {
-      margin-left: 1.5rem;
-
-      a {
-        font-size: 18px;
-        font-weight: bold;
-        text-decoration: none;
-        color: #003b73;
-        transition: color 0.3s ease;
-
-        &:hover {
-          color: #d32f2f;
-        }
-      }
-    }
-  }
-
-  // === Media Queries ===
-
-  // Desktop (stor skärm, 1200px och större)
-  @media (min-width: 1200px) {
-    padding: 1.5rem 3rem;
-
-    .nav-container {
-      .nav-item {
-        margin-left: 2rem;
-      }
-    }
-
-    .logo-container {
-      .logo {
-        max-height: 60px;
-      }
-    }
-
-    .search-container {
-      .search-input {
-        width: 300px;
-      }
-    }
-  }
-
-  // iPad och mellanstora skärmar (768px till 1199px)
-  @media (min-width: 769px) and (max-width: 1199px) {
-    padding: 1rem 2rem;
-
-    .nav-container {
-      .nav-list {
-        flex-wrap: wrap;
-      }
-
-      .nav-item {
-        margin-left: 1rem;
-      }
-    }
-
-    .logo-container {
-      .logo {
-        max-height: 50px;
-      }
-    }
-
-    .search-container {
-      .search-input {
-        width: 250px;
-      }
-    }
-  }
-
-  // Mobiler och mindre skärmar (max 768px)
-  @media (max-width: 768px) {
-    flex-direction: row;
     justify-content: space-between;
     padding: 0.5rem 1rem;
 
-    .nav-container {
+    .left span,
+    .right a,
+    .right span {
+      margin-right: 1rem;
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+
+  .main-header{
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    position: relative;
+
+     // Logotyp styling
+    .logo img {
+      max-height: 60px;
+      object-fit: contain;
+    }
+
+    .menu-toggle{
       display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background-color: #e0f7fa;
-      width: 20%;
-      flex-direction: column;
-      align-items: center;
-      padding: 1rem 0;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      overflow-y: auto;
-
-      .nav-list {
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-      }
-
-      .nav-item {
-        margin: 0.5rem 0;
-
-        a {
-          font-size: 1rem;
-        }
-      }
-    }
-  }
-
-  // iPhone mindre skärmar (max 576px)
-  @media (max-width: 576px) {
-    .logo-container {
-      .logo {
-        max-height: 35px;
-      }
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: #58d68d;
     }
 
+
+    // Navigation styling
     .nav-container {
-      .nav-item {
-        a {
-          font-size: 0.9rem;
+      .nav-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 2rem;
+      }
+
+      &.show{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #003bb1;
+        padding: 1rem;
+      }
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      
+
+      .search-input {
+        padding: 0.45rem 0.6rem;
+        border: 1px solid #ccc;
+        border-radius: 10px 0 0 4px;
+        width: 250px;
+      }
+
+      .search-button {
+        padding: 0.5rem 1rem;
+        border: none;
+        background-color: #58d68d; 
+        color: white;
+        border-radius: 0 4px 10px 0;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #2ecc71; // Mörkare grön vid hover
         }
       }
     }
   }
+
+  .auth-container{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 15px;
+  }
+
+  @include md-max{
+    .main-header{
+      flex-wrap: wrap;
+
+      .menu-toggle{
+        display: block;
+      }
+
+      .nav-container{
+        display: none;
+        width: 100%;
+
+        a{
+          display: block;
+          padding: 0.5rem 0;
+        }
+      }
+
+      .search-container{
+        // flex-direction: column;
+        width: 100%;
+        margin-top: 0.5rem;
+
+        input{
+          width: 100%;
+        }
+      }
+      
+
+
+    }
+
+
+  }
+
 }
