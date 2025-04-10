@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import '../asset/scss/index.css';
-import logo from '../asset/images/logoipsum.png'
+import logo from '../asset/images/eventomania-logo.svg'
 
 function Header() {
   const [searchQuery, setSearchQuery] = useState("");
