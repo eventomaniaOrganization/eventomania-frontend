@@ -34,7 +34,7 @@ function Header() {
 
       <div className='main-header'>
         <button className='menu-toggle' onClick={() => setShowMenu(!showMenu)}>
-          <i class="fa-solid fa-bars"></i>
+          <i className="fa-solid fa-bars"></i>
         </button>
 
         <div className="logo">
@@ -82,11 +82,11 @@ function Header() {
 
         <div className='auth-container'>
             <Link className='btn-gray' to="/login">
-              <i class="fa-solid fa-right-to-bracket"></i>
+              <i className="fa-solid fa-right-to-bracket"></i>
               <span>Login</span>
             </Link>
             <Link className='btn-green' to="/signup">
-              <i class="fa-solid fa-user"></i>
+              <i className="fa-solid fa-user"></i>
               <span>Sign Up</span>
             </Link>
         </div>
