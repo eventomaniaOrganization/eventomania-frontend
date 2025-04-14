@@ -11,7 +11,7 @@ export const populateLargeEvent = async (count = 500) => {
         const fakeEvent = {
             title: faker.company.catchPhrase(),
             description: faker.lorem.paragraph(),
-            image: `https://source.unsplash.com/800x400/?event,${i}`, // unik bild
+            image: faker.image.urlPicsumPhotos({ width: 800, height: 400 }), // unik bild
             address: {
                 text: "Helsingborg, Sverige",
                 lat: 56.0465 + randomOffsetLat(),
