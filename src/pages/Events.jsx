@@ -1,7 +1,7 @@
 function Events() {
     return (
       <div>
-        <p>E</p>
+        <p>Events</p>
       </div>
     );
   }
