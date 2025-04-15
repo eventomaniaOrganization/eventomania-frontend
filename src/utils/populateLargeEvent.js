@@ -19,7 +19,11 @@ export const populateLargeEvent = async (count = 500) => {
             },
             startDateTime: faker.date.soon({ days: 60 }).toISOString(),
             endDateTime: faker.date.soon({ days: 60, refDate: new Date(Date.now() + 2 * 3600000) }).toISOString(),
-            category: faker.helpers.arrayElement(['Konsert', 'Festival', 'Teater', 'Sport', 'Marknad']),
+            category: faker.helpers.arrayElement([
+                'Konsert', 'Festival', 'Teater', 
+                'Sport', 'Marknad', 'Musik', 
+                'Välgörenhet och ändamål', 'Affärer',  
+                'Underhållning']),
             price: faker.number.int({ min: 0, max: 1000 }),
             registrationLink: faker.internet.url(),
             moreInfoLink: faker.internet.url()
