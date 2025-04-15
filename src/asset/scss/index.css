@@ -378,14 +378,13 @@ h6, .h6 {
   padding: 1rem;
 }
 .home .event-card img {
-  max-height: 180px;
   object-fit: cover;
-  width: 100% !important;
+  max-width: 100% !important;
 }
 .home .event-card h5 {
   color: black;
-  margin: 1rem 0 0.5rem;
-  font-size: 1.1rem !important;
+  margin: 1rem 0 1.3rem;
+  font-size: 1rem !important;
 }
 .home .event-card p {
   font-size: 0.9rem;
