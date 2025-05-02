@@ -15,7 +15,7 @@ import ResetPassword from './pages/ResetPassword.jsx';
 const App = () => {
   return (
     <Router>
-      <div className="app">
+      <div className="wrapper">
         <Header />
         <main>
           <Routes>

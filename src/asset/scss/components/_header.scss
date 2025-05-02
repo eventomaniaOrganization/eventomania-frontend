@@ -1,0 +1,140 @@
+@import '../core/media';
+.header {
+  background-color: #ffffff;
+  box-shadow: 0 4px 4px rgba(1, 185, 1, 0.1);
+
+  .top-bar{
+    background-color: #111;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+
+    .left span,
+    .right a,
+    .right span {
+      margin-right: 1rem;
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+
+  .main-header{
+    background-color: white;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    position: relative;
+
+     // Logotyp styling
+    .logo img {
+      height: 50px;
+      object-fit: contain;
+      // background-color: #111;
+      // padding-bottom: 20px;
+    }
+
+    .menu-toggle{
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: #58d68d;
+    }
+
+
+    // Navigation styling
+    .nav-container {
+      .nav-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 2rem;
+      }
+
+      &.show{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #003bb1;
+        padding: 1rem;
+      }
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      
+
+      .search-input {
+        padding: 0.45rem 0.6rem;
+        border: 1px solid #ccc;
+        border-radius: 10px 0 0 4px;
+        width: 250px;
+      }
+
+      .search-button {
+        padding: 0.5rem 1rem;
+        border: none;
+        background-color: #58d68d; 
+        color: white;
+        border-radius: 0 4px 10px 0;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #2ecc71; // Mörkare grön vid hover
+        }
+      }
+    }
+  }
+
+  .auth-container{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 15px;
+  }
+
+  @include md-max{
+    .main-header{
+      flex-wrap: wrap;
+
+      .menu-toggle{
+        display: block;
+      }
+
+      .nav-container{
+        display: none;
+        width: 100%;
+
+        a{
+          display: block;
+          padding: 0.5rem 0;
+        }
+      }
+
+      .search-container{
+        // flex-direction: column;
+        width: 100%;
+        margin-top: 0.5rem;
+
+        input{
+          width: 100%;
+        }
+      }
+      
+
+
+    }
+
+
+  }
+
+}
