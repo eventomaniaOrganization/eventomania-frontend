@@ -162,6 +162,88 @@
   }
 }
 
+.sign-in {
+  background-color: rgb(219, 217, 217);
+  border-radius: 1rem;
+  box-shadow: 5px 5px 6px -1px rgba(0, 0, 0, 0.1);
+  max-width: 45%;
+}
+.sign-in h1 {
+  color: #4374dd;
+}
+.sign-in form {
+  padding: 2rem 1rem;
+  display: grid;
+  gap: 15px;
+}
+.sign-in form .error {
+  color: red;
+}
+.sign-in form input {
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: border 0.3s ease-in-out;
+}
+.sign-in form input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
+  outline: none;
+}
+.sign-in form .btn-primary {
+  background: #2563eb;
+  border: none;
+  border-radius: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.sign-in form .btn-primary:hover {
+  background: #1350d4;
+  transform: translateY(-1px);
+}
+
+.sign-up {
+  background-color: rgb(219, 217, 217);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  max-width: 45%;
+}
+.sign-up h1 {
+  color: #4374dd;
+}
+.sign-up form {
+  padding: 3rem 1rem;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(4, auto);
+  gap: 15px;
+}
+.sign-up form .error {
+  color: red;
+}
+.sign-up form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: border 0.3s ease-in-out;
+}
+.sign-up form input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+  outline: none;
+}
+.sign-up form .btn-primary {
+  background: #2563eb;
+  border: none;
+  border-radius: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.sign-up form .btn-primary:hover {
+  background: #1350d4;
+  transform: translateY(-0.8px);
+}
+
 html, body {
   line-height: 160%;
   font-weight: 400;

@@ -1,0 +1,48 @@
+.sign-up{
+    background-color: rgb(219, 217, 217);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    max-width: 45%;
+    
+    h1{
+        color: #4374dd;
+    }
+
+    form{
+        padding: 3rem 1rem;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows:repeat(4, auto);
+        gap: 15px;
+
+        .error{
+            color: red;
+        }
+      
+        input{
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: border 0.3s ease-in-out;
+            &:focus{
+                border-color:#2563eb ;
+                box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+                outline: none;
+            }
+
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            border: none;
+            border-radius: 1rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        
+            &:hover {
+              background: darken(#2563eb, 8%);
+              transform: translateY(-0.8px);
+            }
+          }
+    }
+}
