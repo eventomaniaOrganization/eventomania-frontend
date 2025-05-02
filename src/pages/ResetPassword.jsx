@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
-import {auth} from "../firebaseconfig"
+import {auth} from "../firebaseConfig"
 import {sendPasswordResetEmail} from "firebase/auth"
 
 const ResetPassword = () => {

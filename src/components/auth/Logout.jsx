@@ -1,4 +1,4 @@
-import {auth} from "../../firebaseconfig";
+import {auth} from "../../firebaseConfig";
 import {signOut} from "firebase/auth";
 import React from 'react'
 import { useNavigate } from "react-router-dom";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {auth} from "../../firebaseconfig"
+import {auth} from "../../firebaseConfig"
 // för att kolla om andvändaren är inloggad
 import {onAuthStateChanged} from "firebase/auth"
 import {Navigate, Outlet} from "react-router-dom"
