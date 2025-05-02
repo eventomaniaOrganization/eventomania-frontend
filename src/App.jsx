@@ -7,7 +7,7 @@ import About from './pages/About.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Header from './components/header/Header.jsx';
-import Footer from './components/footer/footer.jsx';
+import Footer from './components/footer.jsx';
 import ProtectedRoute from './components/auth/ProtectedRoute.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import ResetPassword from './pages/ResetPassword.jsx';
