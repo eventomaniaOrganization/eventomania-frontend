@@ -11,6 +11,8 @@ import Footer from './components/footer.jsx';
 import ProtectedRoute from './components/auth/ProtectedRoute.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import ResetPassword from './pages/ResetPassword.jsx';
+import './asset/scss/index.css';
+
 
 const App = () => {
   return (
