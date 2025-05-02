@@ -162,88 +162,6 @@
   }
 }
 
-.sign-in {
-  background-color: rgb(219, 217, 217);
-  border-radius: 1rem;
-  box-shadow: 5px 5px 6px -1px rgba(0, 0, 0, 0.1);
-  max-width: 45%;
-}
-.sign-in h1 {
-  color: #4374dd;
-}
-.sign-in form {
-  padding: 2rem 1rem;
-  display: grid;
-  gap: 15px;
-}
-.sign-in form .error {
-  color: red;
-}
-.sign-in form input {
-  padding: 15px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  transition: border 0.3s ease-in-out;
-}
-.sign-in form input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
-  outline: none;
-}
-.sign-in form .btn-primary {
-  background: #2563eb;
-  border: none;
-  border-radius: 1rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-.sign-in form .btn-primary:hover {
-  background: #1350d4;
-  transform: translateY(-1px);
-}
-
-.sign-up {
-  background-color: rgb(219, 217, 217);
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  max-width: 45%;
-}
-.sign-up h1 {
-  color: #4374dd;
-}
-.sign-up form {
-  padding: 3rem 1rem;
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: repeat(4, auto);
-  gap: 15px;
-}
-.sign-up form .error {
-  color: red;
-}
-.sign-up form input {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  transition: border 0.3s ease-in-out;
-}
-.sign-up form input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
-  outline: none;
-}
-.sign-up form .btn-primary {
-  background: #2563eb;
-  border: none;
-  border-radius: 1rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-.sign-up form .btn-primary:hover {
-  background: #1350d4;
-  transform: translateY(-0.8px);
-}
-
 html, body {
   line-height: 160%;
   font-weight: 400;
@@ -488,80 +406,48 @@ h6, .h6 {
   background-color: #2ecc71;
 }
 
-/*här är style för eventer*/
-
 .events-page {
-  font-family: Arial, sans-serif;
-  padding: 20px;
+  padding: 2rem;
   background-color: #f9f9f9;
 }
-
-h1 {
-  text-align: center;
-  color: #333;
-}
-
-.filter-buttons {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.filter-button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.filter-button.active {
-  background-color: #0056b3;
-}
-
-.filter-button:hover {
-  background-color: #0056b3;
-}
-
-.event-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-.event-card {
-  background-color: white;
+.events-page .event-card {
+  background-color: #ffffff;
   border: 1px solid #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-.event-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-.event-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.event-card h3 {
-  margin: 10px;
+.events-page .event-card .event-title {
   font-size: 1.5rem;
+  font-weight: bold;
   color: #333;
+  margin-bottom: 0.5rem;
 }
-
-.event-card p {
-  margin: 10px;
+.events-page .event-card .event-date {
+  font-size: 1rem;
   color: #666;
+  margin-bottom: 1rem;
+}
+.events-page .event-card .event-description {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+.events-page .event-card .event-actions {
+  margin-top: 1rem;
+}
+.events-page .event-card .event-actions button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.events-page .event-card .event-actions button:hover {
+  background-color: #0056b3;
 }
 
 
