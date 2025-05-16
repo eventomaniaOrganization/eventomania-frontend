@@ -9,6 +9,7 @@ import {Autoplay ,Navigation, Pagination, Scrollbar, A11y} from "swiper/modules"
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import MapEvents from '../components/MapEvents';
 
 function Home() {
   const [events, setEvents] = useState([])
@@ -74,6 +75,9 @@ function Home() {
             <button className='btn btn-outline-warning' onClick={() => handleCategoryClick('Mat')}>Mat</button>
           </div>
         </div>
+
+        <MapEvents></MapEvents>        
+
       </div>
     );
 

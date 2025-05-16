@@ -12,6 +12,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import ResetPassword from './pages/ResetPassword.jsx';
 import './asset/scss/index.css';
+import '../node_modules/leaflet/dist/leaflet.css';
+
 
 
 const App = () => {
