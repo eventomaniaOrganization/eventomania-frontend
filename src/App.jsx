@@ -1,3 +1,4 @@
+// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
@@ -12,7 +13,9 @@ import ProtectedRoute from './components/auth/ProtectedRoute.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import ResetPassword from './pages/ResetPassword.jsx';
 import './asset/scss/index.css';
-
+import Map from './pages/Map.jsx';
+import Header from './components/header/Header.jsx';
+import Footer from './components/footer/footer.jsx';
 
 const App = () => {
   return (
@@ -45,7 +48,7 @@ const App = () => {
               path="/signup"
               element={<Signup />}
             />
-
+            <Route path="/Map" element={<Map />} />
             <Route 
               path='/reset-password' 
               element={<ResetPassword />}
