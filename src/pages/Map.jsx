@@ -7,6 +7,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebaseConfig.js';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
+import { auth } from '../firebaseConfig.js';
 
 const Map = () => {
   async function logEventsData() {
@@ -23,7 +24,9 @@ const Map = () => {
     }
   }
 
-  logEventsData();
+  useEffect(() => {
+    logEventsData();
+  }, []);
   const [user, setUser] = useState(null);
   const [position, setPosition] = useState(null);
   const [events, setEvents] = useState([]); // Stores all events
