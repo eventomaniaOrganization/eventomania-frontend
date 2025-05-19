@@ -14,8 +14,6 @@ import Dashboard from './pages/Dashboard.jsx';
 import ResetPassword from './pages/ResetPassword.jsx';
 import './asset/scss/index.css';
 import Map from './pages/Map.jsx';
-import Header from './components/header/Header.jsx';
-import Footer from './components/footer/footer.jsx';
 
 const App = () => {
   return (
@@ -48,16 +46,24 @@ const App = () => {
               path="/signup"
               element={<Signup />}
             />
-            <Route path="/Map" element={<Map />} />
-            <Route 
-              path='/reset-password' 
+            <Route
+              path="/map"
+              element={<Map />}
+            />
+            <Route
+              path="/reset-password"
               element={<ResetPassword />}
             />
 
             {/* Skyddade rutter */}
-            <Route path='/dashboard' element={<ProtectedRoute/>}>
-              <Route index element={<Dashboard/>} />
-
+            <Route
+              path="/dashboard"
+              element={<ProtectedRoute />}
+            >
+              <Route
+                index
+                element={<Dashboard />}
+              />
             </Route>
           </Routes>
         </main>

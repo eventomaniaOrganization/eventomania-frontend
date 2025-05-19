@@ -1,14 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { auth } from '../components/map/firebase';
 import Auth from '../components/map/Auth';
 import EventMarkers from '../components/map/EventMarkers';
-import { fetchAllEvents } from '../components/map/firebase'; // Removed fetchEventsByCity
 import L from 'leaflet';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebaseConfig.js';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 
 const Map = () => {
+  async function logEventsData() {
+    try {
+      const eventsCol = collection(db, 'Events');
+      const eventsSnapshot = await getDocs(eventsCol);
+      const eventsList = eventsSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      console.log('Events data:', eventsList);
+    } catch (error) {
+      console.error('Error fetching events:', error);
+    }
+  }
+
+  logEventsData();
   const [user, setUser] = useState(null);
   const [position, setPosition] = useState(null);
   const [events, setEvents] = useState([]); // Stores all events
