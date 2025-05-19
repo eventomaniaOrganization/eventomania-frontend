@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import Auth from '../components/map/Auth';
 import EventMarkers from '../components/map/EventMarkers';
 import L from 'leaflet';
 import { collection, getDocs } from 'firebase/firestore';
@@ -10,33 +9,9 @@ import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import { auth } from '../firebaseConfig.js';
 
 const Map = () => {
-  async function logEventsData() {
-    try {
-      const eventsCol = collection(db, 'Events');
-      const eventsSnapshot = await getDocs(eventsCol);
-      const eventsList = eventsSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      console.log('Events data:', eventsList);
-    } catch (error) {
-      console.error('Error fetching events:', error);
-    }
-  }
-
-  useEffect(() => {
-    logEventsData();
-  }, []);
-  const [user, setUser] = useState(null);
   const [position, setPosition] = useState(null);
-  const [events, setEvents] = useState([]); // Stores all events
-  const [clickedEvent, setClickedEvent] = useState(null);
+  const [events, setEvents] = useState([]);
   const mapRef = useRef(null);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(setUser);
-    return () => unsubscribe();
-  }, []);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -53,12 +28,29 @@ const Map = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch all events when the component mounts
     const fetchEvents = async () => {
       try {
-        const fetchedEvents = await fetchAllEvents();
-        console.log('Fetched events:', fetchedEvents); // Debugging log
-        setEvents(fetchedEvents);
+        const eventsCol = collection(db, 'events');
+        const eventsSnapshot = await getDocs(eventsCol);
+        const eventsList = eventsSnapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            title: data.title,
+            description: data.description,
+            category: data.category,
+            startDateTime: data.startDateTime,
+            endDateTime: data.endDateTime,
+            address: data.address,
+          };
+        });
+
+        // Only include events with valid lat/lon
+        const filtered = eventsList.filter(
+          (e) => e.address?.lat !== undefined && e.address?.lon !== undefined
+        );
+
+        setEvents(filtered);
       } catch (error) {
         console.error('Error fetching events:', error);
       }
@@ -67,28 +59,17 @@ const Map = () => {
     fetchEvents();
   }, []);
 
-  if (!user) {
-    return <Auth />;
-  }
-
-  if (!position) {
-    return <div>Loading...</div>;
-  }
+  if (!position) return <div>Loading map...</div>;
 
   return (
-    <div
-      className="map-page"
-      style={{ textAlign: 'center', padding: '20px' }}
-    >
+    <div className="map-page" style={{ textAlign: 'center', padding: '20px' }}>
       <h2>Event Map</h2>
-
-      {/* Map Container */}
       <MapContainer
         center={[position.lat, position.lon]}
         zoom={13}
         style={{
-          height: '500px',
-          width: '100%',
+          height: '900px',
+          width: '60%',
           margin: '0 auto',
           borderRadius: '10px',
         }}
@@ -96,18 +77,17 @@ const Map = () => {
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution='&copy; OpenStreetMap contributors'
         />
 
         <Marker position={[position.lat, position.lon]}>
           <Popup>Your current location</Popup>
         </Marker>
 
-        {/* Event Markers with Button in Popup */}
         <EventMarkers
-          events={events} // Ensure we're passing all events correctly
+          events={events}
           userLocation={position}
-          setClickedEvent={setClickedEvent}
+          setClickedEvent={() => {}}
           mapRef={mapRef}
         />
       </MapContainer>
