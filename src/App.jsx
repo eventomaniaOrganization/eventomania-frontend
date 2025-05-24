@@ -14,6 +14,7 @@ import Dashboard from './pages/Dashboard.jsx';
 import ResetPassword from './pages/ResetPassword.jsx';
 import './asset/scss/index.css';
 import Map from './pages/Map.jsx';
+import Offers from './pages/Offers.jsx';
 
 const App = () => {
   return (
@@ -50,6 +51,10 @@ const App = () => {
               path="/map"
               element={<Map />}
             />
+            <Route
+              path='/offers'
+              element={<Offers />}
+            ></Route>
             <Route
               path="/reset-password"
               element={<ResetPassword />}

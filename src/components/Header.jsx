@@ -74,7 +74,7 @@ function Header() {
               <Link className='menu-link' to="/">Kalender</Link>
             </li>
             <li className="nav-item">
-              <Link className='menu-link' to="/">Erbjudande</Link>
+              <Link className='menu-link' to="/offers">Erbjudanden</Link>
             </li>
             <li className="nav-item">
               <Link className='menu-link' to="/map">Karta</Link>
