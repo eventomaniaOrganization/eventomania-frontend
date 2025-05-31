@@ -2,7 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { fetchEvents } from '../services/eventService';
 import '../asset/scss/index.css';
 
+// Lista på filtrerad kategorier av event
 const ALLOWED_CATEGORIES = ['Konsert', 'Teater', 'Sport'];
+
+// Retunerar en version av kategorier med emoji
+const getDecoratedCategory = (category) => {
+  switch (category) {
+    case 'Konsert':
+      return '🎵 Konsert';
+    case 'Teater':
+      return '🎭 Teater';
+    case 'Sport':
+      return '⚽ Sport';
+    default:
+      return category;
+  }
+};
 
 // Filtrerar endast event i juni och juli
 const isSummerEvent = (dateString) => {
@@ -13,6 +28,7 @@ const isSummerEvent = (dateString) => {
 
 const Offers = () => {
   const [offersByCategory, setOffersByCategory] = useState({});
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
     const loadOffers = async () => {
@@ -65,7 +81,7 @@ const Offers = () => {
             key={category}
             className="offers-category-column"
           >
-            <h2 className="mb-3">{category}</h2>
+            <h2 className="mb-3">{getDecoratedCategory(category)}</h2>
 
             {offersByCategory[category] &&
             offersByCategory[category].length > 0 ? (
@@ -124,14 +140,12 @@ const Offers = () => {
                       </p>
 
                       {event.registrationLink && (
-                        <a
-                          href={event.registrationLink}
+                        <button
                           className="btn btn-primary"
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          onClick={() => setSelectedEvent(event)}
                         >
                           Boka nu
-                        </a>
+                        </button>
                       )}
                     </div>
                   </div>
@@ -143,6 +157,44 @@ const Offers = () => {
           </div>
         ))}
       </div>
+
+      {/* Modal-rutan för boka event */}
+      {selectedEvent && (
+        <div className="modal-backdrop">
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2>{selectedEvent.title}</h2>
+            <p>
+              <strong>Kategori:</strong> {selectedEvent.category}
+            </p>
+            <p>
+              <strong>Start:</strong>{' '}
+              {formatStartDateTime(selectedEvent.startDateTime)}
+            </p>
+            <p>
+              <strong>Plats:</strong> {selectedEvent.address?.text}
+            </p>
+            <p>
+              <strong>Länk:</strong>{' '}
+              <a
+                href={selectedEvent.registrationLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {selectedEvent.registrationLink}
+              </a>
+            </p>
+            <button
+              className="btn btn-secondary mt-3"
+              onClick={() => setSelectedEvent(null)}
+            >
+              Stäng
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
